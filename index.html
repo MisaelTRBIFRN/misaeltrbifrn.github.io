@@ -11,21 +11,18 @@
         <img src="assets/images/info2v.png" alt="info2v">
         <h1>Login</h1>
 
-        <form action="">
+        <form action="" id="formLogin">
             <div class="inputs-boxes">
-                <p>Nome</p>
-                <input type="text" name="nome" class="nome" placeholder="Ex.: Fulano Dital" required>
+                <p>E-mail</p>
+                <input type="text" name="email" id="emailLogin" placeholder="Ex.: fulano33.@gmail.com" >
+                <p class="errorText errorEmail">O email é inválido!</p>
             </div>
 
             <div class="inputs-boxes">
                 <p>Senha</p>
-                <input type="password" name="senha" class="senha" placeholder="Ex.: Ful@no73." required>
-            </div>
-
-            <!-- <div class="inputs-boxes">
-                <p>E-mail</p>
-                <input type="text" name="email" placeholder="Ex.: fulano33.@gmail.com">
-            </div>        -->
+                <input type="password" name="senha" id="senhaLogin" placeholder="Ex.: Ful@no73." >
+                <p class="errorText errorSenha">A senha é inválida!</p>
+            </div>       
 
             <button>Sign in</button>
         </form>
