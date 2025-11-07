@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/styles/style.css">
 </head>
-<body>
-    <h1>menu</h1>
+<body id="pageMenu">
+    <h1 class="menu-h1">Menu</h1>
+
+    <div class="container-menu">
+        <div class="menus box-get">
+            <h1>GET</h1>
+
+            <table cellspacing="0" align="center">
+                <thead>
+                    <th colspan="5" class="th-top">Lista de Usuários</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Senha</th>
+                        <th>Telefone</th>
+                    </tr>
+                    <tr>
+                        <th id="ID"></th>
+                        <td id="name"></td>
+                        <td id="email"></td>
+                        <td id="password"></td>
+                        <td id="tel"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="menus box-post">
+            <h1>SELECT</h1>
+        </div>
+
+        <div class="menus box-delete">
+            <h1>DELETE</h1>
+
+            <div class="box-del">
+                <input type="search" placeholder="Digite o id para ser deletado..." id="delInput">
+
+                <button id="delBtn">Deletar</button>
+            </div>
+        </div>
+
+        <div class="menus box-put">
+            <h1>PUT</h1>
+
+            <form action="" id="Edit">
+                <div class="inputs-boxes">
+                    <p>ID</p>
+                    <input type="text" name="nome" id="id" placeholder="Ex.: 1, 2, 3..." required>
+                    <p class="errorText errorId">O ID é inválido!</p>
+                </div>
+
+                <div class="inputs-boxes">
+                    <p>Nome</p>
+                    <input type="text" name="nome" id="nomeEdit" placeholder="Ex.: Fulano Dital" required>
+                    <p class="errorText errorNome">O nome é inválido!</p>
+                </div>
+    
+                <div class="inputs-boxes">
+                    <p>E-mail</p>
+                    <input type="text" name="email" id="emailEdit" placeholder="Ex.: fulano33.@gmail.com" required>
+                    <p class="errorText errorEmail">O email é inválido!</p>
+                </div>
+
+                <p style="font-size: 65px; text-align: center; margin: 70px 0px 100px 0px;">Não funcional <br> via FrontEnd</p>
+    
+                <div class="inputs-boxes">
+                    <p>Senha</p>
+                    <input type="password" name="senha" id="senhaEdit" placeholder="Ex.: Ful@no73." required>
+                    <p class="errorText errorSenha">A senha é inválida!</p>
+                </div>
+    
+                <div class="inputs-boxes">
+                    <p>Telefone</p>
+                    <input type="text" name="tel" id="telEdit" placeholder="Ex.: +55 (84) 99876-5432" required>
+                    <p class="errorText errorTel">O telefone é inválido!</p>
+                </div>          
+    
+                <button style="margin-bottom: 20px;">Editar</button>
+            </form>
+        </div>
+    </div>
 
     <button class="logout-button" onclick="logout()">Logout</button>
 
