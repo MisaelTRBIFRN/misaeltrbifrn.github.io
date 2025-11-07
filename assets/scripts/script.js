@@ -40,13 +40,15 @@ function isTelefoneValid(telefone) {
 function exibirErrorMessage(errorElement) {
     if (errorElement) {
         // errorElement.textContent = message;
-        errorElement.style.display = 'block';
+        //errorElement.style.display = 'block';
+        errorElement.style.opacity = '1';
     }
 }
 
 function desexibirErrorMessage(errorElement) {
     if (errorElement) {
-        errorElement.style.display = 'none';
+        //errorElement.style.display = 'none';
+        errorElement.style.opacity = '0';
         // errorElement.textContent = "";
     }
 }
