@@ -1,3 +1,4 @@
+// Spin
 const rotation = document.getElementById('rotation');
 
 function ativarRotacao() {
@@ -13,6 +14,7 @@ function desativarRotacao() {
 }
 
 // Validação Front-End
+// const errorMessageId = document.querySelector('.errorId');
 const errorMessageNome = document.querySelector('.errorNome');
 const errorMessageEmail = document.querySelector('.errorEmail');
 const errorMessageSenha = document.querySelector('.errorSenha');
@@ -32,7 +34,7 @@ function isSenhaValid(senha) {
 }
 
 function isTelefoneValid(telefone) {
-    return telefone.length = 12;
+    return telefone.length === 12;
 }
 
 function exibirErrorMessage(errorElement) {
@@ -183,6 +185,31 @@ const formularioLogin = document.getElementById("formLogin");
 const IemailLogin = document.getElementById("emailLogin");
 const IsenhaLogin = document.getElementById("senhaLogin");
 
+const pageMenu = document.getElementById("pageMenu");
+
+function isLogado() {
+    const authToken = localStorage.getItem("authToken");
+
+    return !!authToken;
+}
+
+if (pageMenu) {
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!isLogado()) {
+            window.location.replace('/index.html');
+    
+            document.body.style.display = 'none';
+            // alert('Você precisa estar logado para acessar esta página!');
+        } else {
+            listarUsuarios();
+        }
+    });
+
+    if (delBtn) {
+        delBtn.addEventListener('click', deletarUsuario);
+    }
+}
+
 function logar() {
     if (!formularioLogin) return;
 
@@ -216,10 +243,10 @@ function logar() {
             // alert('Login realizado com sucesso!');
             ativarRotacao();
             setTimeout(() => {
-                window.location.replace('/assets/pages/menu-logado/menu.html');
+                window.location.replace('/assets/pages/menu.html');
             }, 1500);
         })
-        .catch(function (res) {
+        .catch(function (error) {
             console.error(error);
             limparLogin();
         })
@@ -252,3 +279,161 @@ function logout() {
     ativarRotacao();
     window.location.replace('/index.html');
 }
+
+// fetchs
+function listarUsuarios() {
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+        window.location.replace('/index.html');
+        return;
+    }
+
+    fetch("http://localhost:8080/usuarios",
+        {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization' : `Bearer ${token}`
+            }
+        })
+        .then(function (res) {
+            if (res.ok) {
+                return res.json();
+            } else if (res.status === 403) {
+                logout();
+            }
+        })
+        .then(function(data) {
+            if (!data) return;
+
+            const tbody = document.querySelector('.box-get table tbody');
+            if (!tbody) {
+                return;
+            }
+
+            const headerRow = tbody.rows[0].outerHTML;
+            tbody.innerHTML = headerRow;
+
+            data.forEach(user => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <th id="ID">${user.id}</th>
+                    <td id="name">${user.nome}</td>
+                    <td id="email">${user.email}</td>
+                    <td id="password">${user.senha}</td>
+                    <td id="tel">${user.telefone}</td>
+                `
+
+                tbody.appendChild(row);
+            });
+        })
+        .catch(function (res) { 
+            console.log(res) 
+        })
+};
+
+function deletarUsuario() {
+    const token = localStorage.getItem("authToken");
+
+    const id = delInput.value;
+
+    if (!id || isNaN(id)) {
+        alert('O ID é inválido! Tente novamente!');
+        return;
+    }
+
+    if (!token) {
+        window.location.replace('/index.html');
+        return;
+    }
+
+    if (!confirm(`Tem certeza que deseja deletar o usuário com ID ${id}?`)) {
+        return;
+    }
+
+    fetch(`http://localhost:8080/usuarios/${id}`,
+        {
+            method: "DELETE",
+            headers: {
+                'Authorization' : `Bearer ${token}`
+            }
+        })
+        .then(function (res) {
+            if (res.status === 204) {
+                alert('Usuário deletado com sucesso!');
+
+                delInput.value = "";
+                listarUsuarios();
+            } else if (res.status === 403) {
+                logout();
+            }
+        })
+        .then(function(data) {
+            if (!data) return;
+
+            
+        })
+        .catch(function (res) { 
+            console.log(res) 
+        })
+};
+
+// EDITAR
+/*
+const formularioEdit = document.getElementById("formEdit");
+
+const InomeEdit = document.getElementById("nomeEdit");
+const IemailEdit = document.getElementById("emailEdit");
+const IsenhaEdit = document.getElementById("senhaEdit");
+const ItelEdit = document.getElementById("telEdit");
+
+function editarUsuario() {
+    const token = localStorage.getItem("authToken");
+
+    const id = delInput.value;
+
+    if (!id || isNaN(id)) {
+        alert('O ID é inválido! Tente novamente!');
+        return;
+    }
+
+    if (!token) {
+        window.location.replace('/index.html');
+        return;
+    }
+
+    validarCadastro();
+
+    if (!confirm(`Tem certeza que deseja editar o usuário?`)) {
+        return;
+    }
+
+    fetch("http://localhost:8080/usuarios",
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({
+                id: id.value,
+                nome: InomeEdit.value,
+                email: IemailEdit.value,
+                senha: IsenhaEdit.value,
+                telefone: ItelEdit.value
+            })
+        })
+        .then(function (res) {
+            console.log(res);
+            if (res.status === 201) {
+                alert('Edição realizado com sucesso!');
+            } else {
+                console.log('Erro ao cadastrar! \nVerifique os dados.');
+            }
+        })
+        .catch(function (res) { console.log(res) })
+};
+*/
