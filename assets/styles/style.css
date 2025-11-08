@@ -340,10 +340,11 @@ td {
 
 @media screen and (max-width: 768px) {
     body {
+        margin: auto;
+        width: 90%;
         max-width: 100%;
         overflow-x: hidden;
-        height: auto;
-        margin-top: 10%;
+        margin-top: 1%;
     }
 
     .box {
@@ -364,6 +365,7 @@ td {
     .box-post,
     .box-put {
         justify-content: flex-start;
+        height: 350px;
     }
 
     .edit-form {
@@ -382,6 +384,7 @@ td {
     }
 
     .box-put {
+        height: 385px;
         max-width: 90%;
         overflow-y: scroll;
         scrollbar-width: none;
