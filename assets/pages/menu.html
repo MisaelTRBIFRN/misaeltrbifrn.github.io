@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Projeto de Spring Boot</title>:
+    <link rel="stylesheet" href="/assets/styles/style.css">
+</head>
+
+<body id="pageMenu">
+    <h1 class="menu-h1">Menu</h1>
+
+    <div class="container-menu">
+        <div class="menus box-get">
+            <h2>GET</h2>
+
+            <table cellspacing="0">
+                <thead>
+                    <th colspan="4" class="th-top">Lista de Usuários</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                    </tr>
+                    <tr>
+                        <th id="ID"></th>
+                        <td id="name"></td>
+                        <td id="email"></td>
+                        <td id="tel"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="menus box-post">
+            <h2>POST</h2>
+
+            <form action="" id="formCreateNewUser">
+                <div class="edit-form">
+                    <div class="inputs-boxes-create">
+                        <p>Nome:</p>
+                        <input type="text" name="nome" id="nomeCad" placeholder="Ex.: Fulano Dital" required>
+                        <p class="errorText errorNome">O nome é inválido!</p>
+                    </div>
+
+                    <div class="inputs-boxes-create">
+                        <p>E-mail:</p>
+                        <input type="text" name="email" id="emailCad" placeholder="Ex.: fulano33.@gmail.com" required>
+                        <p class="errorText errorEmail">O email é inválido!</p>
+                    </div>
+
+                    <div class="inputs-boxes-create">
+                        <p>Senha:</p>
+                        <input type="password" name="senha" id="senhaCad" placeholder="Ex.: Ful@no73." required>
+                        <p class="errorText errorSenha">A senha é inválida!</p>
+                    </div>
+
+                    <div class="inputs-boxes-create">
+                        <p>Telefone:</p>
+                        <input type="text" name="tel" id="telCad" placeholder="Ex.: +55 (84) 99876-5432" required>
+                        <p class="errorText errorTel">O telefone é inválido!</p>
+                    </div>
+                </div>
+
+                <button id="createBtn">Criar</button>
+            </form>
+        </div>
+
+        <div class="menus container-delete">
+            <h2>DELETE</h2>
+
+            <div class="box-del">
+                <input type="number" placeholder="Digite ou selecione o id para deletar..." id="delInput">
+
+                <button id="delBtn">Deletar</button>
+            </div>
+        </div>
+
+        <div class="menus box-select">
+            <h2>SELECT</h2>
+
+            <form action="" id="formSelect">
+                <div class="container-consultar" style="margin-bottom: -15px;">
+                    <div class="inputs-boxes">
+                        <p>ID:</p>
+                        <input type="number" name="id" id="idConsult" placeholder="Ex.: 1, 2, 3...">
+                        <p class="errorText errorId">O ID é inválido!</p>
+                    </div>
+                </div>
+
+                <button id="consultBtn">Consultar</button>
+
+                <table cellspacing="0">
+                    <thead>
+                        <th colspan="4" class="th-top">Informações de Usuário</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                        </tr>
+                        <tr>
+                            <th id="ID"></th>
+                            <td id="name"></td>
+                            <td id="email"></td>
+                            <td id="tel"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+        </div>
+    </div>
+    
+    <div class="menus box-put">
+        <h2>PUT</h2>
+
+        <form action="" id="Edit">
+
+            <div class="container-edit-id">
+                <div class="inputs-boxes-edit edit-id">
+                    <p>ID:</p>
+                    <input type="number" name="id" id="id" placeholder="Ex.: 1, 2, 3..." required>
+                    <p class="errorText errorId">O ID é inválido!</p>
+                </div>
+            </div>
+
+            <div class="edit-form">
+                <div class="inputs-boxes-edit">
+                    <p>Nome:</p>
+                    <input type="text" name="nome" id="nomeEdit" placeholder="Ex.: Fulano Dital" required>
+                    <p class="errorText errorNome">O nome é inválido!</p>
+                </div>
+
+                <div class="inputs-boxes-edit">
+                    <p>E-mail:</p>
+                    <input type="text" name="email" id="emailEdit" placeholder="Ex.: fulano33.@gmail.com" required>
+                    <p class="errorText errorEmail">O email é inválido!</p>
+                </div>
+
+                <div class="inputs-boxes-edit">
+                    <p>Senha:</p>
+                    <input type="password" name="senha" id="senhaEdit" placeholder="Ex.: Ful@no73." required>
+                    <p class="errorText errorSenha">A senha é inválida!</p>
+                </div>
+
+                <div class="inputs-boxes-edit tel-box-edit">
+                    <p>Telefone:</p>
+                    <input type="text" name="tel" id="telEdit" placeholder="Ex.: +55 (84) 99876-5432" required>
+                    <p class="errorText errorTel">O telefone é inválido!</p>
+                </div>
+            </div>
+
+            <button style="margin-top: -5px;" id="editBtn">Editar</button>
+        </form>
+    </div>
+
+    <button class="logout-button" onclick="logout()">Logout</button>
+
+    <div class="rotation-box" id="rotation">
+        <div class="rotation"></div>
+    </div>
+
+    <script src="/assets/scripts/script.js"></script>
+</body>
+
+</html>
