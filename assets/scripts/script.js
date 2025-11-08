@@ -1,3 +1,5 @@
+const API_BASE_URL = 'https://springboot-misael.onrender.com/api/usuarios';
+
 const body = document.querySelector('body');
 
 // Spin
@@ -174,7 +176,7 @@ function cadastrar() {
 
     ativarRotacao();
 
-    fetch("http://localhost:8080/usuarios",
+    fetch(API_BASE_URL,
         {
             headers: {
                 'Accept': 'application/json',
@@ -291,7 +293,7 @@ function logar() {
 
     ativarRotacao();
 
-    fetch("http://localhost:8080/usuarios/login",
+    fetch(`${API_BASE_URL}/login`,
         {
             headers: {
                 'Accept': 'application/json',
@@ -384,7 +386,7 @@ function listarUsuarios() {
         return;
     }
 
-    fetch("http://localhost:8080/usuarios",
+    fetch(API_BASE_URL,
         {
             method: "GET",
             headers: {
@@ -441,7 +443,7 @@ function createNewUser() {
 
     ativarRotacao();
 
-    fetch("http://localhost:8080/usuarios",
+    fetch(API_BASE_URL,
         {
             headers: {
                 'Accept': 'application/json',
@@ -524,7 +526,7 @@ function deletarUsuario() {
 
     ativarRotacao();
 
-    fetch(`http://localhost:8080/usuarios/${idToDelete}`,
+    fetch(`${API_BASE_URL}/${idToDelete}`,
         {
             method: "DELETE",
             headers: {
@@ -577,7 +579,7 @@ function consultarUsuario() {
 
     ativarRotacao();
 
-    fetch(`http://localhost:8080/usuarios`,
+    fetch(API_BASE_URL,
         {
             method: "GET",
             headers: {
@@ -688,7 +690,7 @@ function editarUsuario() {
 
     ativarRotacao();
 
-    fetch("http://localhost:8080/usuarios",
+    fetch(API_BASE_URL,
         {
             headers: {
                 'Accept': 'application/json',
